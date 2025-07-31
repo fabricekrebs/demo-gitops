@@ -17,19 +17,6 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: apps
-  namespace: flux-system
-spec:
-  interval: 10m0s
-  path: ./apps
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: demo-gitops
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
   name: infrastructure
   namespace: flux-system
 spec:
@@ -39,3 +26,18 @@ spec:
   sourceRef:
     kind: GitRepository
     name: demo-gitops
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./apps
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: demo-gitops
+  dependsOn:
+    - name: infrastructure

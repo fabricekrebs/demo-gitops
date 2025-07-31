@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: aks-demo-webapp
+  labels:
+    name: aks-demo-webapp
+    app.kubernetes.io/managed-by: flux
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: aks-store-demo
+  labels:
+    name: aks-store-demo
+    app.kubernetes.io/managed-by: flux

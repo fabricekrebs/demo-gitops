@@ -67,6 +67,9 @@ demo-gitops/
 │   │   └── kustomization.yaml    # App kustomization
 │   └── kustomization.yaml        # Apps directory kustomization
 ├── infrastructure/               # Infrastructure components
+│   ├── namespaces/               # Application namespaces
+│   │   ├── namespaces.yaml       # Namespace definitions
+│   │   └── kustomization.yaml    # Namespace kustomization
 │   ├── ingress-nginx/            # Nginx ingress controller
 │   └── kustomization.yaml        # Infrastructure kustomization
 ├── base/                         # Common configurations
@@ -113,8 +116,8 @@ kubectl get pods -A
 flux reconcile kustomization apps -n flux-system
 
 # Reconcile specific application
-flux reconcile kustomization aks-demo-webapp -n aks-demo-webapp
-flux reconcile kustomization aks-store-demo -n aks-store-demo
+flux reconcile kustomization aks-demo-webapp -n flux-system
+flux reconcile kustomization aks-store-demo -n flux-system
 ```
 
 ### View Logs
@@ -133,10 +136,10 @@ kubectl logs -n aks-store-demo -l app=store-front
 
 ```bash
 # Suspend an application
-flux suspend kustomization aks-demo-webapp -n aks-demo-webapp
+flux suspend kustomization aks-demo-webapp -n flux-system
 
 # Resume an application
-flux resume kustomization aks-demo-webapp -n aks-demo-webapp
+flux resume kustomization aks-demo-webapp -n flux-system
 ```
 
 ## Troubleshooting
@@ -172,8 +175,8 @@ flux check
 flux get all -A --status-selector ready=false
 
 # Export resources for debugging
-flux export source git aks-demo-webapp-source -n aks-demo-webapp
-flux export kustomization aks-demo-webapp -n aks-demo-webapp
+flux export source git aks-demo-webapp-source -n flux-system
+flux export kustomization aks-demo-webapp -n flux-system
 ```
 
 ## Customization
