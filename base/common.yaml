@@ -1,0 +1,8 @@
+# Common labels applied to all resources
+commonLabels:
+  managed-by: flux
+  environment: production
+
+# Common annotations
+commonAnnotations:
+  config.kubernetes.io/local-config: "true"

@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo-webapp
+  labels:
+    name: demo-webapp
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: demo-webapp-source
+  namespace: demo-webapp
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  url: https://github.com/fabricekrebs/demo-webapp
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: demo-webapp
+  namespace: demo-webapp
+spec:
+  interval: 10m0s
+  path: ./manifests
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: demo-webapp-source
+  validation: client
+  targetNamespace: demo-webapp

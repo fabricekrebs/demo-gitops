@@ -1,0 +1,38 @@
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+
+# Runtime and temporary files
+*.tmp
+*.temp
+.cache/
+
+# Secrets (should not be in Git)
+*.key
+*.pem
+secrets.yaml
+.env
+.env.local
+
+# Backup files
+*.bak
+*.backup
+
+# IDE specific
+.vscode/settings.json
+.idea/workspace.xml
