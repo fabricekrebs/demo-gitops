@@ -28,5 +28,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: aks-store-demo-source
-  validation: client
   targetNamespace: aks-store-demo

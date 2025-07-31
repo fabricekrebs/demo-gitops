@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: demo-webapp
+  name: aks-demo-webapp
   labels:
-    name: demo-webapp
+    name: aks-demo-webapp
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: demo-webapp-source
-  namespace: demo-webapp
+  name: aks-demo-webapp-source
+  namespace: aks-demo-webapp
 spec:
   interval: 1m0s
   ref:
@@ -19,14 +19,13 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: demo-webapp
-  namespace: demo-webapp
+  name: aks-demo-webapp
+  namespace: aks-demo-webapp
 spec:
   interval: 10m0s
   path: ./manifests
   prune: true
   sourceRef:
     kind: GitRepository
-    name: demo-webapp-source
-  validation: client
-  targetNamespace: demo-webapp
+    name: aks-demo-webapp-source
+  targetNamespace: aks-demo-webapp

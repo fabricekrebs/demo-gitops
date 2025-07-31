@@ -39,16 +39,16 @@ fi
 
 echo ""
 echo -e "${BLUE}📱 Application Namespaces:${NC}"
-kubectl get namespaces | grep -E "(demo-webapp|aks-store-demo)" || echo "No application namespaces found"
+kubectl get namespaces | grep -E "(aks-demo-webapp|aks-store-demo)" || echo "No application namespaces found"
 
 echo ""
-echo -e "${BLUE}🚀 Demo WebApp Status:${NC}"
-if kubectl get namespace demo-webapp > /dev/null 2>&1; then
-    kubectl get pods -n demo-webapp
+echo -e "${BLUE}🚀 AKS Demo WebApp Status:${NC}"
+if kubectl get namespace aks-demo-webapp > /dev/null 2>&1; then
+    kubectl get pods -n aks-demo-webapp
     echo ""
-    kubectl get services -n demo-webapp
+    kubectl get services -n aks-demo-webapp
 else
-    echo "demo-webapp namespace not found"
+    echo "aks-demo-webapp namespace not found"
 fi
 
 echo ""

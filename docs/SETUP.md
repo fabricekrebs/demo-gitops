@@ -59,8 +59,8 @@ demo-gitops/
 │   ├── flux-system.yaml          # Main Flux configuration
 │   └── kustomization.yaml        # Cluster kustomization
 ├── apps/                          # Application definitions
-│   ├── demo-webapp/              # Demo webapp configuration
-│   │   ├── demo-webapp.yaml      # Flux resources for demo-webapp
+│   ├── aks-demo-webapp/          # Demo webapp configuration
+│   │   ├── aks-demo-webapp.yaml  # Flux resources for demo-webapp
 │   │   └── kustomization.yaml    # App kustomization
 │   ├── aks-store-demo/           # AKS store demo configuration
 │   │   ├── aks-store-demo.yaml   # Flux resources for store demo
@@ -79,10 +79,10 @@ demo-gitops/
 
 ## Application Management
 
-### Demo WebApp
+### AKS Demo WebApp
 
 - **Source Repository**: https://github.com/fabricekrebs/demo-webapp
-- **Namespace**: demo-webapp
+- **Namespace**: aks-demo-webapp
 - **Manifests Path**: ./manifests
 - **Sync Interval**: 10 minutes
 
@@ -113,7 +113,7 @@ kubectl get pods -A
 flux reconcile kustomization apps -n flux-system
 
 # Reconcile specific application
-flux reconcile kustomization demo-webapp -n demo-webapp
+flux reconcile kustomization aks-demo-webapp -n aks-demo-webapp
 flux reconcile kustomization aks-store-demo -n aks-store-demo
 ```
 
@@ -125,7 +125,7 @@ kubectl logs -n flux-system deployment/source-controller
 kubectl logs -n flux-system deployment/kustomize-controller
 
 # Application logs
-kubectl logs -n demo-webapp -l app=demo-webapp
+kubectl logs -n aks-demo-webapp -l app=aks-demo-webapp
 kubectl logs -n aks-store-demo -l app=store-front
 ```
 
@@ -133,10 +133,10 @@ kubectl logs -n aks-store-demo -l app=store-front
 
 ```bash
 # Suspend an application
-flux suspend kustomization demo-webapp -n demo-webapp
+flux suspend kustomization aks-demo-webapp -n aks-demo-webapp
 
 # Resume an application
-flux resume kustomization demo-webapp -n demo-webapp
+flux resume kustomization aks-demo-webapp -n aks-demo-webapp
 ```
 
 ## Troubleshooting
@@ -172,8 +172,8 @@ flux check
 flux get all -A --status-selector ready=false
 
 # Export resources for debugging
-flux export source git demo-webapp-source -n demo-webapp
-flux export kustomization demo-webapp -n demo-webapp
+flux export source git aks-demo-webapp-source -n aks-demo-webapp
+flux export kustomization aks-demo-webapp -n aks-demo-webapp
 ```
 
 ## Customization

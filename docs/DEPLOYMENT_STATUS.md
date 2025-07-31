@@ -4,7 +4,7 @@
 
 | Application | Repository | Branch | Path | Namespace | Status |
 |-------------|------------|--------|------|-----------|---------|
-| Demo WebApp | fabricekrebs/demo-webapp | main | ./manifests | demo-webapp | Configured |
+| AKS Demo WebApp | fabricekrebs/demo-webapp | main | ./manifests | aks-demo-webapp | Configured |
 | AKS Store Demo | Azure-Samples/aks-store-demo | main | ./kustomize/base | aks-store-demo | Configured |
 
 ## Infrastructure Components
@@ -25,7 +25,7 @@
 
 ### Namespace Configuration
 
-- **demo-webapp**: Dedicated namespace for the custom Django application
+- **aks-demo-webapp**: Dedicated namespace for the custom Django application
 - **aks-store-demo**: Dedicated namespace for the microservices demo
 - **ingress-nginx**: Nginx ingress controller
 - **flux-system**: Flux controllers and configurations

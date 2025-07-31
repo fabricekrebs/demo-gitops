@@ -8,7 +8,7 @@ This repository contains the GitOps configuration for deploying applications to 
 ├── clusters/               # Cluster-specific configurations
 │   └── production/        # Production cluster configuration
 ├── apps/                  # Application configurations
-│   ├── demo-webapp/       # Demo webapp application
+│   ├── aks-demo-webapp/   # Demo webapp application
 │   └── aks-store-demo/    # AKS store demo application
 ├── infrastructure/        # Infrastructure components
 └── base/                  # Base configurations and common resources
@@ -16,10 +16,10 @@ This repository contains the GitOps configuration for deploying applications to 
 
 ## Applications
 
-### 1. Demo WebApp
+### 1. AKS Demo WebApp
 - **Source**: https://github.com/fabricekrebs/demo-webapp
 - **Description**: Custom Django web application for demonstration purposes
-- **Namespace**: demo-webapp
+- **Namespace**: aks-demo-webapp
 
 ### 2. AKS Store Demo
 - **Source**: https://github.com/Azure-Samples/aks-store-demo

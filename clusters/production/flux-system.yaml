@@ -26,7 +26,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: demo-gitops
-  validation: client
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -40,4 +39,3 @@ spec:
   sourceRef:
     kind: GitRepository
     name: demo-gitops
-  validation: client
