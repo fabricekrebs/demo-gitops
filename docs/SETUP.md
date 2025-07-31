@@ -66,15 +66,9 @@ demo-gitops/
 │   │   ├── aks-store-demo.yaml   # Flux resources for store demo
 │   │   └── kustomization.yaml    # App kustomization
 │   └── kustomization.yaml        # Apps directory kustomization
-├── infrastructure/               # Infrastructure components
-│   ├── namespaces/               # Application namespaces
-│   │   ├── namespaces.yaml       # Namespace definitions
-│   │   └── kustomization.yaml    # Namespace kustomization
-│   ├── ingress-nginx/            # Nginx ingress controller
-│   └── kustomization.yaml        # Infrastructure kustomization
-├── base/                         # Common configurations
-│   ├── common.yaml               # Common labels and annotations
-│   └── kustomization.yaml        # Base kustomization
+├── rbac.yaml                     # Flux RBAC permissions
+├── namespaces.yaml               # Application namespaces
+├── kustomization.yaml            # Root kustomization
 └── scripts/                      # Helper scripts
     ├── bootstrap-flux.sh         # Flux bootstrap script
     └── check-status.sh           # Status checking script
@@ -112,8 +106,8 @@ kubectl get pods -A
 ### Force Reconciliation
 
 ```bash
-# Reconcile all applications
-flux reconcile kustomization apps -n flux-system
+# Reconcile everything from root
+flux reconcile kustomization demo-gitops -n flux-system
 
 # Reconcile specific application
 flux reconcile kustomization aks-demo-webapp -n flux-system
@@ -206,11 +200,21 @@ To add staging environment:
 
 ## Security Best Practices
 
-1. **RBAC**: Implement proper role-based access control
+1. **RBAC**: Cross-namespace permissions configured for Flux controllers
 2. **Network Policies**: Restrict pod-to-pod communication
 3. **Secrets Management**: Use Azure Key Vault or Sealed Secrets
 4. **Image Scanning**: Implement container vulnerability scanning
 5. **Git Security**: Use signed commits and branch protection
+
+### Flux RBAC Configuration
+
+The repository includes a simple RBAC configuration (`rbac.yaml`) that grants the `flux-applier` service account cluster-wide permissions:
+
+- **ClusterRole**: `flux-applier-cluster-role` with full permissions
+- **ClusterRoleBinding**: Binds the `flux-applier` service account to the cluster role
+- **Broad Permissions**: Allows Flux to manage all resources across all namespaces
+
+This ensures Flux can deploy applications anywhere while keeping the configuration simple.
 
 ## Monitoring and Observability
 

@@ -22,3 +22,4 @@ spec:
     kind: GitRepository
     name: aks-demo-webapp-source
   targetNamespace: aks-demo-webapp
+  serviceAccountName: flux-applier

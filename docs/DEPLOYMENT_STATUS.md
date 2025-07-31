@@ -12,7 +12,8 @@
 | Component | Status | Notes |
 |-----------|--------|-------|
 | Flux System | Configured | Main GitOps controller |
-| Ingress NGINX | Configured | Load balancer ingress |
+| RBAC | Configured | flux-applier permissions |
+| Namespaces | Configured | Application namespaces |
 
 ## Environment Configuration
 
@@ -21,20 +22,19 @@
 - **Branch**: `main`
 - **Sync Interval**: 10 minutes
 - **Prune**: Enabled
-- **Validation**: Client-side
+- **Root Path**: `./` (simplified structure)
 
 ### Namespace Configuration
 
 - **aks-demo-webapp**: Dedicated namespace for the custom Django application
 - **aks-store-demo**: Dedicated namespace for the microservices demo
-- **ingress-nginx**: Nginx ingress controller
 - **flux-system**: Flux controllers and configurations
 
 ## Security Settings
 
-- **Network Policies**: To be configured
-- **RBAC**: Default service account permissions
-- **Secret Management**: In-cluster secrets (consider Azure Key Vault integration)
+- **RBAC**: flux-applier service account with cluster-wide permissions
+- **Service Account**: All kustomizations use flux-applier
+- **Permissions**: Full cluster access for simplified management
 
 ## Monitoring & Observability
 
@@ -50,12 +50,12 @@
 
 ## Next Steps
 
-1. ✅ Repository structure created
-2. ✅ Flux configurations defined
-3. ✅ Application sources configured
-4. ✅ Infrastructure components added
-5. ✅ Helper scripts created
-6. ✅ Documentation written
+1. ✅ Repository structure simplified
+2. ✅ Root-level kustomization created
+3. ✅ RBAC permissions configured
+4. ✅ Namespaces moved to root
+5. ✅ Complex infrastructure removed
+6. ✅ Documentation updated
 7. ⏳ Bootstrap Flux on AKS cluster
 8. ⏳ Verify application deployments
 9. ⏳ Configure monitoring and alerts

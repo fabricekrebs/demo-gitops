@@ -5,13 +5,14 @@ This repository contains the GitOps configuration for deploying applications to 
 ## Repository Structure
 
 ```
-├── clusters/               # Cluster-specific configurations
-│   └── production/        # Production cluster configuration
-├── apps/                  # Application configurations
-│   ├── aks-demo-webapp/   # Demo webapp application
-│   └── aks-store-demo/    # AKS store demo application
-├── infrastructure/        # Infrastructure components
-└── base/                  # Base configurations and common resources
+├── clusters/production/       # Cluster-specific configurations
+├── apps/                      # Application configurations
+│   ├── aks-demo-webapp/       # Demo webapp application
+│   └── aks-store-demo/        # AKS store demo application
+├── rbac.yaml                  # Flux RBAC permissions
+├── namespaces.yaml           # Application namespaces
+├── kustomization.yaml        # Root kustomization
+└── scripts/                  # Helper scripts
 ```
 
 ## Applications
