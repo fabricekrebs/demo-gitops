@@ -15,7 +15,7 @@ metadata:
   name: aks-store-demo
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 1m0s
   path: ./kustomize/base
   prune: true
   sourceRef:
@@ -23,3 +23,25 @@ spec:
     name: aks-store-demo-source
   targetNamespace: aks-store-demo
   serviceAccountName: flux-applier
+  patches:
+  - target:
+      kind: Service
+      name: store-front
+    patch: |-
+      - op: replace
+        path: /spec/type
+        value: NodePort
+      - op: add
+        path: /spec/allocateLoadBalancerNodePorts
+        value: null
+  - target:
+      kind: Service
+      name: store-admin
+    patch: |-
+      - op: replace
+        path: /spec/type
+        value: NodePort
+      - op: add
+        path: /spec/allocateLoadBalancerNodePorts
+        value: null
+
