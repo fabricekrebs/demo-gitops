@@ -13,3 +13,11 @@ metadata:
   labels:
     name: aks-store-demo
     app.kubernetes.io/managed-by: flux
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: aks-azure-files-demo
+  labels:
+    name: aks-azure-files-demo
+    app.kubernetes.io/managed-by: flux
