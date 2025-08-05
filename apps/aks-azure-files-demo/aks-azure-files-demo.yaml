@@ -1,0 +1,25 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: aks-azure-files-demo-source
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  url: https://github.com/fabricekrebs/aks-azure-files-demo
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: aks-azure-files-demo
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  path: ./k8s
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: aks-azure-files-demo-source
+  targetNamespace: aks-azure-files-demo
+  serviceAccountName: flux-applier
