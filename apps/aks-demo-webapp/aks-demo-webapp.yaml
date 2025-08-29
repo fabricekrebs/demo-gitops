@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: demo-webapp-dev-source
+  name: demo-webapp-dev
   namespace: flux-system
 spec:
   interval: 1m0s
@@ -13,7 +13,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: demo-webapp-dev
+  name: aks-demo-webapp-dev
   namespace: flux-system
 spec:
   interval: 2m0s
@@ -21,14 +21,14 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: demo-webapp-dev-source
-  targetNamespace: demo-webapp-dev
+    name: demo-webapp-dev
+  targetNamespace: aks-demo-webapp-dev
   serviceAccountName: flux-applier
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
-      name: dev-demo-webapp
-      namespace: demo-webapp-dev
+      name: demo-webapp
+      namespace: aks-demo-webapp-dev
   timeout: 5m
 ---
 # Production environment configuration
@@ -46,7 +46,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: demo-webapp-prod
+  name: aks-demo-webapp
   namespace: flux-system
 spec:
   interval: 10m0s
@@ -55,11 +55,11 @@ spec:
   sourceRef:
     kind: GitRepository
     name: demo-webapp-prod-source
-  targetNamespace: demo-webapp
+  targetNamespace: aks-demo-webapp
   serviceAccountName: flux-applier
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
       name: demo-webapp
-      namespace: demo-webapp
+      namespace: aks-demo-webapp
   timeout: 15m
